@@ -2,7 +2,7 @@
 
 ## Fusión con la versión v2f (5 de noviembre de 2026)
 
-Esta entrega une la versión GitHub (interfaz Three.js, camas, varita, cola de milano, informes) con el **núcleo geométrico de la v2f** (`nucleo/`, sin dependencias externas).
+Esta entrega une la versión GitHub (interfaz Three.js, camas, varita, cola de milano, informes) con el **núcleo geométrico de la v2f** (archivos `nucleo-*.js`, sin dependencias externas).
 
 **Cortar región marcada** usa ahora por defecto el método **«Exacto por el borde marcado»**: separa las caras marcadas por sus aristas reales, sin tocar el exterior, y cierra cada contorno con una tapa interior compartida (plana, radial con meseta o con faldón). Cada pieza se comprueba como sólido cerrado y la suma de volúmenes debe coincidir con el original. La curva ajustada (cuádrica) sigue disponible en el mismo panel como «Curva ajustada a la selección (aproximada)», y la curva manual y la superficie guardada no cambian.
 
@@ -45,14 +45,14 @@ Junto a «Modelo de ejemplo» están los dos ejemplos de la v2f: **hongo de 3 co
 
 - `ejemplos-v2f.js` — los dos modelos de ejemplo de la v2f.
 
-- `nucleo/` — núcleo de la v2f (malla, selección, tapa, corte, plano, colores, encastres, colisión, exportar) con su earcut.
+- `nucleo-*.js` — núcleo de la v2f (malla, selección, tapa, corte, plano, colores, encastres, colisión, exportar, autocorrección). Todos los archivos de la app están sueltos en la raíz, sin carpetas, para poder subirlos desde el móvil.
 - `nucleo-puente.js` — convierte una malla de Three.js al núcleo y devuelve el resultado con el formato del corte curvo.
 - `nucleo-trabajador.js` / `nucleo-ui.js` — Worker y panel de las herramientas exactas.
 - `tests/nucleo-v2f.test.mjs`, `tests/nucleo-puente.test.mjs`, `tests/nucleo-herramientas.test.mjs` (+ `tests/v2f/` y `tests/geometria-v2f.mjs` como datos de prueba).
 
 ### Pruebas
 
-`node --test` desde la raíz ejecuta todas las suites (también la Action de GitHub): **52 pasan, 0 fallan, 4 `todo`**. Los cuatro `todo` de `fase2-casos.test.mjs` miden la curva ajustada, que sigue sin cumplirlos; el método exacto los cumple en `tests/nucleo-puente.test.mjs`. Los Workers se probaron en Chromium. La interfaz completa no pudo abrirse en este entorno porque Three.js se carga desde esm.sh; falta comprobarla en Safari/iPhone tras publicar.
+`node --test` desde la raíz ejecuta todas las suites (también la Action de GitHub): **52 pasan, 0 fallan, 4 `todo`**. Los cuatro `todo` de `fase2-casos.test.mjs` miden la curva ajustada, que sigue sin cumplirlos; el método exacto los cumple en `tests/nucleo-puente.test.mjs`. Los Workers se probaron en Chromium. Three.js se carga desde jsDelivr con direcciones completas (sin mapa de importaciones), lo que funcionó en la tableta donde esm.sh no cargaba. Si algo falla al arrancar, aparece un aviso rojo abajo con el error.
 
 
 Entrega del 4 de noviembre de 2026. Basada en el código fuente versión 5 de esta conversación, con comprobación de tapa visible y trabajo temporal sin guardar/recuperar proyectos. No integra automáticamente los paquetes separados de otras conversaciones.
@@ -70,7 +70,7 @@ Deshacer y Rehacer se muestran en la parte superior, también en iPhone. Para ap
 5. Si Pages ya publica desde main y / (root), conserva esa configuración. Si aún no está configurado, utiliza Settings → Pages → Deploy from a branch, selecciona tu rama y / (root).
 6. Abre la dirección de Pages cuando termine la publicación y recarga Safari. El ZIP descargado no ejecuta la aplicación directamente.
 
-No requiere npm ni compilación. Requiere conexión para las dependencias Three.js existentes en esm.sh. Las rutas locales son relativas para funcionar bajo el nombre de tu repositorio. No se han publicado cambios automáticamente.
+No requiere npm ni compilación. Requiere conexión para cargar Three.js desde jsDelivr. Las rutas locales son relativas para funcionar bajo el nombre de tu repositorio. No se han publicado cambios automáticamente.
 
 Los encastres usan three-bvh-csg 0.0.17 desde esm.sh solo al pulsar «Agregar pasador y alojamiento». Si falla esa descarga, la aplicación continúa cargada, muestra un aviso y deja sin aplicar los encastres. La vista previa de cola de milano y las herramientas cilíndricas comparten geometrías corregidas; aún se deben comprobar encastres reales en Safari y en el laminador.
 

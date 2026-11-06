@@ -1,10 +1,10 @@
 // Worker de las herramientas del núcleo v2f sobre una pieza de la escena:
 // separar partes sueltas, cerrar agujeros, dividir para la cama y separar por color.
 // Recibe posiciones en coordenadas de mundo (mm) y devuelve piezas cerradas e indexadas.
-import { soldar, orientar, analizar, topologia, componentes, extraer, volumen } from './nucleo/malla.js?v=2.10';
-import { cerrarAgujeros } from './nucleo/corte.js?v=2.10';
-import { cortarPorPlano, planosParaCama } from './nucleo/plano.js?v=2.10';
-import { separarPorColor } from './nucleo/colores.js?v=2.10';
+import { soldar, orientar, analizar, topologia, componentes, extraer, volumen } from './nucleo-malla.js?v=2.10';
+import { cerrarAgujeros } from './nucleo-corte.js?v=2.10';
+import { cortarPorPlano, planosParaCama } from './nucleo-plano.js?v=2.10';
+import { separarPorColor } from './nucleo-colores.js?v=2.10';
 
 function sopaDe(positions, index) {
   const n = index ? index.length / 3 : positions.length / 9, s = new Float32Array(n * 9);

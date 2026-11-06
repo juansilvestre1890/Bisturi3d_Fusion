@@ -2,8 +2,8 @@
 // Corte exacto por el borde marcado: el exterior no se toca y el borde de cada pieza
 // coincide con las aristas reales de la selección. Devuelve el mismo formato que
 // selection-cut.js para que la vista previa y la confirmación del corte curvo lo usen.
-import { soldar, orientar, analizar } from './nucleo/malla.js?v=2.10';
-import { cortarPorSeleccion } from './nucleo/corte.js?v=2.10';
+import { soldar, orientar, analizar } from './nucleo-malla.js?v=2.10';
+import { cortarPorSeleccion } from './nucleo-corte.js?v=2.10';
 
 function sopaDe(positions, index) {
   const n = index ? index.length / 3 : positions.length / 9, s = new Float32Array(n * 9);

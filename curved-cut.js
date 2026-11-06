@@ -3,7 +3,7 @@
 import {pointTriangleDistanceSquared} from './triangle-distance.js';
 import {refineCap} from './refine-cap.js';
 import {visitCapSamples} from './cap-samples.js';
-import earcut, {deviation} from './vendor/earcut.js';
+import earcut, {deviation} from './earcut.js';
 const fail = message => { throw new Error(message); };
 export const evaluate = (q,x,y,z) => q[0]+q[1]*x+q[2]*y+q[3]*z+q[4]*x*x+q[5]*x*y+q[6]*x*z+q[7]*y*y+q[8]*y*z+q[9]*z*z;
 const value = (q,p) => evaluate(q,...p);
