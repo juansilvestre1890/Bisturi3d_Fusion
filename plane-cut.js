@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.169.0/+esm';
 
 // Plane cut of an individual triangular mesh in its LOCAL XY coordinates.
 // Caps are constructed from closed intersection contours; open/non-manifold

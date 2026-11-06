@@ -43,22 +43,22 @@ import {convertSTLToSlicerZUp} from './stl-slicer-orientation.js';
 import {assertCombinedBedSTLIntegrity} from './bed-combined-integrity.js';
 import {summarizeRecoveredExport} from './recovered-export-audit.js';
 import {inspectExpectedVertexMoments,assertSTLTransformIntegrity} from './export-geometry-integrity.js';
-import * as THREE from 'three';
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import {TransformControls} from 'three/addons/controls/TransformControls.js';
-import {STLLoader} from 'three/addons/loaders/STLLoader.js';
-import {OBJLoader} from 'three/addons/loaders/OBJLoader.js';
-import {MTLLoader} from 'three/addons/loaders/MTLLoader.js';
-import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
-import {FBXLoader} from 'three/addons/loaders/FBXLoader.js';
-import {ThreeMFLoader} from 'three/addons/loaders/3MFLoader.js';
-import {STLExporter} from 'three/addons/exporters/STLExporter.js';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.169.0/+esm';
+import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/controls/OrbitControls.js/+esm';
+import {TransformControls} from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/controls/TransformControls.js/+esm';
+import {STLLoader} from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/STLLoader.js/+esm';
+import {OBJLoader} from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/OBJLoader.js/+esm';
+import {MTLLoader} from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/MTLLoader.js/+esm';
+import {GLTFLoader} from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/GLTFLoader.js/+esm';
+import {FBXLoader} from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/FBXLoader.js/+esm';
+import {ThreeMFLoader} from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/loaders/3MFLoader.js/+esm';
+import {STLExporter} from 'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/exporters/STLExporter.js/+esm';
 const $=id=>document.getElementById(id),viewport=$('viewport');
 let csgPromise=null;
 async function loadCSG(){
   const button=$('pegApplyBtn');button.disabled=true;
   try{
-    if(!csgPromise)csgPromise=import('https://esm.sh/three-bvh-csg@0.0.17?external=three').catch(error=>{csgPromise=null;throw error});
+    if(!csgPromise)csgPromise=import('https://cdn.jsdelivr.net/npm/three-bvh-csg@0.0.17/+esm').catch(error=>{csgPromise=null;throw error});
     const module=await csgPromise;
     if(!module.Brush||!module.Evaluator||module.ADDITION===undefined||module.SUBTRACTION===undefined)throw Error('Módulo CSG incompleto.');
     return module;
@@ -1643,3 +1643,5 @@ const nucleoPanel=setupNucleoPanel(THREE,{
  }
 });
 
+
+window.__bisturiListo=true;

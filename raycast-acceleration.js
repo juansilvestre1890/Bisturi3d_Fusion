@@ -1,7 +1,7 @@
 // Optional acceleration for static selection meshes. Preserve face ordering.
 let library=null,loading=null;
 export function loadRaycastAcceleration(){
- if(!loading)loading=import('three-mesh-bvh').then(mod=>{library=mod;return true;}).catch(()=>false);
+ if(!loading)loading=Promise.reject(new Error('Aceleración BVH desactivada: requería un segundo Three.js')).then(mod=>{library=mod;return true;}).catch(()=>false);
  return loading;
 }
 export function accelerateSurfaceMeshes(meshes){
